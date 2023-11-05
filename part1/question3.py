@@ -26,19 +26,53 @@
 # formulas and their outputs in the test file, `question3_test.py`.
 
 # This function should return an oven instance!
+class MagicalOven:
+    def __init__(self):
+        self.ingredients = []
+        self.temperature = 0
+        self.result = None
+
+    def add(self, item):
+        self.ingredients.append(item)
+
+    def freeze(self):
+        if "water" in self.ingredients and "air" in self.ingredients:
+            self.result = "snow"
+            
+
+    def boil(self):
+        if "lead" in self.ingredients and "mercury" in self.ingredients:
+             self.result = "gold"
+        elif "cheese" in self.ingredients and "dough" in self.ingredients and "tomato" in self.ingredients:
+             self.result = "pizza"
+        
+
+    def wait(self):
+       self.result = "unknown"
+
+    def get_output(self):
+        return self.result
+
 def make_oven():
-  None
+    return MagicalOven()
 
 def alchemy_combine(oven, ingredients, temperature):
-  
-  for item in ingredients:
-    oven.add(item)
+    for item in ingredients:
+        oven.add(item)
 
-  if temperature < 0:
-    oven.freeze()
-  elif temperature >= 100:
-    oven.boil()
-  else:
-    oven.wait()
+    if temperature < 0:
+        oven.freeze()
+        
+    elif temperature >= 100:
+        oven.boil()
+        
+    else:
+        oven.wait()
+    
+    return oven.get_output()
 
-  return oven.get_output()
+results = alchemy_combine(
+    make_oven(),
+    ["cheese", "dough", "tomato"],
+    150)
+print(results)
